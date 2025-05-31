@@ -1,9 +1,6 @@
 package spentenergy
 
-import (
-	"errors"
-	"time"
-)
+import "time"
 
 // Основные константы, необходимые для расчетов.
 const (
@@ -13,61 +10,23 @@ const (
 	walkingCaloriesCoefficient = 0.5  // коэффициент для расчета калорий при ходьбе.
 )
 
-// WalkingSpentCalories для расчета калорий при ходьбе
 func WalkingSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	// TODO: реализовать функцию
-	switch {
-	case steps <= 0:
-		return 0, errors.New("Value 'steps' must be positive")
-	case weight <= 0:
-		return 0, errors.New("Value 'weight' must be positive")
-	case height <= 0:
-		return 0, errors.New("Value 'height' must be positive")
-	case duration <= 0:
-		return 0, errors.New("Value 'duration' must be positive")
-	}
-
-	meanSpeed := MeanSpeed(steps, height, duration)
-	return ((weight * meanSpeed * duration.Minutes()) / minInH) * walkingCaloriesCoefficient, nil
 
 }
 
 // RunSpentCalories для расчета калорий при беге
 func RunningSpentCalories(steps int, weight, height float64, duration time.Duration) (float64, error) {
 	// TODO: реализовать функцию
-	switch {
-	case steps <= 0:
-		return 0, errors.New("Value 'steps' must be positive")
-	case weight <= 0:
-		return 0, errors.New("Value 'weight' must be positive")
-	case height <= 0:
-		return 0, errors.New("Value 'height' must be positive")
-	case duration <= 0:
-		return 0, errors.New("Value 'duration' must be positive")
-	}
 
-	meanSpeed := MeanSpeed(steps, height, duration)
-	return (weight * meanSpeed * duration.Minutes()) / minInH, nil
 }
 
-// MeanSpeed считает среднюю скорость
 func MeanSpeed(steps int, height float64, duration time.Duration) float64 {
 	// TODO: реализовать функцию
-	if steps <= 0 || height <= 0 || duration <= 0 {
-		return 0
-	}
-	return Distance(steps, height) / duration.Hours()
 
 }
 
-// Distance считает дистанцию в км
 func Distance(steps int, height float64) float64 {
 	// TODO: реализовать функцию
-	if steps <= 0 || height <= 0 {
-		return 0
-	}
-	length := height * stepLengthCoefficient
-	dist := float64(steps) * length
-	distKm := dist / mInKm
-	return distKm
+
 }
